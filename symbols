@@ -44,6 +44,7 @@ libva.so.2:VA_API_0.32.0
 libva.so.2:VA_API_0.33.0
 libva.so.2:vaAcquireBufferHandle
 libva.so.2:vaAssociateSubpicture
+libva.so.2:vaAttachProtectedSession
 libva.so.2:vaBeginPicture
 libva.so.2:vaBufferInfo
 libva.so.2:vaBufferSetNumElements
@@ -56,6 +57,7 @@ libva.so.2:vaCreateConfig
 libva.so.2:vaCreateContext
 libva.so.2:vaCreateImage
 libva.so.2:vaCreateMFContext
+libva.so.2:vaCreateProtectedSession
 libva.so.2:vaCreateSubpicture
 libva.so.2:vaCreateSurfaces
 libva.so.2:vaDeassociateSubpicture
@@ -64,8 +66,10 @@ libva.so.2:vaDestroyBuffer
 libva.so.2:vaDestroyConfig
 libva.so.2:vaDestroyContext
 libva.so.2:vaDestroyImage
+libva.so.2:vaDestroyProtectedSession
 libva.so.2:vaDestroySubpicture
 libva.so.2:vaDestroySurfaces
+libva.so.2:vaDetachProtectedSession
 libva.so.2:vaDisplayIsValid
 libva.so.2:vaEndPicture
 libva.so.2:vaEntrypointStr
@@ -88,6 +92,7 @@ libva.so.2:vaMaxNumImageFormats
 libva.so.2:vaMaxNumProfiles
 libva.so.2:vaMaxNumSubpictureFormats
 libva.so.2:vaProfileStr
+libva.so.2:vaProtectedSessionExecute
 libva.so.2:vaPutImage
 libva.so.2:vaQueryConfigAttributes
 libva.so.2:vaQueryConfigEntrypoints
