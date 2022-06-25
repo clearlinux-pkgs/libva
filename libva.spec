@@ -4,7 +4,7 @@
 #
 Name     : libva
 Version  : 2.14.0
-Release  : 53
+Release  : 54
 URL      : https://github.com/intel/libva/archive/2.14.0/libva-2.14.0.tar.gz
 Source0  : https://github.com/intel/libva/archive/2.14.0/libva-2.14.0.tar.gz
 Summary  : Userspace Video Acceleration (VA) core interface
@@ -100,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656049826
+export SOURCE_DATE_EPOCH=1656133724
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
