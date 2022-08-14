@@ -4,7 +4,7 @@
 #
 Name     : libva
 Version  : 2.15.0
-Release  : 56
+Release  : 57
 URL      : https://github.com/intel/libva/archive/2.15.0/libva-2.15.0.tar.gz
 Source0  : https://github.com/intel/libva/archive/2.15.0/libva-2.15.0.tar.gz
 Summary  : Userspace Video Acceleration (VA) core interface
