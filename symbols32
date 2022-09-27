@@ -126,6 +126,8 @@ libva.so.2:vaSyncSurface2
 libva.so.2:vaTerminate
 libva.so.2:vaUnlockSurface
 libva.so.2:vaUnmapBuffer
+libva.so.2:va_TraceEvent
+libva.so.2:va_TraceEventBuffers
 libva.so.2:va_TracePutSurface
 libva.so.2:va_TraceStatus
 libva.so.2:va_errorMessage
