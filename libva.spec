@@ -5,7 +5,7 @@
 #
 Name     : libva
 Version  : 2.18.0
-Release  : 64
+Release  : 65
 URL      : https://github.com/intel/libva/archive/2.18.0/libva-2.18.0.tar.gz
 Source0  : https://github.com/intel/libva/archive/2.18.0/libva-2.18.0.tar.gz
 Summary  : Userspace Video Acceleration (VA) core interface
@@ -20,7 +20,6 @@ BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
-BuildRequires : pkgconfig(32gl)
 BuildRequires : pkgconfig(32libdrm)
 BuildRequires : pkgconfig(32wayland-client)
 BuildRequires : pkgconfig(32wayland-scanner)
@@ -30,7 +29,6 @@ BuildRequires : pkgconfig(32xcb)
 BuildRequires : pkgconfig(32xcb-dri3)
 BuildRequires : pkgconfig(32xext)
 BuildRequires : pkgconfig(32xfixes)
-BuildRequires : pkgconfig(gl)
 BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(wayland-client)
 BuildRequires : pkgconfig(wayland-scanner)
@@ -40,7 +38,6 @@ BuildRequires : pkgconfig(xcb)
 BuildRequires : pkgconfig(xcb-dri3)
 BuildRequires : pkgconfig(xext)
 BuildRequires : pkgconfig(xfixes)
-BuildRequires : sed
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -112,15 +109,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679409699
+export SOURCE_DATE_EPOCH=1683051269
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwith_legacy=nvctrl  builddir
 ninja -v -C builddir
 CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwith_legacy=nvctrl  builddiravx2
@@ -162,9 +159,12 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libva-drm.so
+/V3/usr/lib64/libva-wayland.so
+/V3/usr/lib64/libva-x11.so
+/V3/usr/lib64/libva.so
 /usr/include/va/va.h
 /usr/include/va/va_backend.h
-/usr/include/va/va_backend_glx.h
 /usr/include/va/va_backend_prot.h
 /usr/include/va/va_backend_vpp.h
 /usr/include/va/va_backend_wayland.h
@@ -189,7 +189,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/va/va_fei.h
 /usr/include/va/va_fei_h264.h
 /usr/include/va/va_fei_hevc.h
-/usr/include/va/va_glx.h
 /usr/include/va/va_prot.h
 /usr/include/va/va_str.h
 /usr/include/va/va_tpi.h
@@ -197,18 +196,11 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/va/va_vpp.h
 /usr/include/va/va_wayland.h
 /usr/include/va/va_x11.h
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-drm.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-glx.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-wayland.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-x11.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva.so
 /usr/lib64/libva-drm.so
-/usr/lib64/libva-glx.so
 /usr/lib64/libva-wayland.so
 /usr/lib64/libva-x11.so
 /usr/lib64/libva.so
 /usr/lib64/pkgconfig/libva-drm.pc
-/usr/lib64/pkgconfig/libva-glx.pc
 /usr/lib64/pkgconfig/libva-wayland.pc
 /usr/lib64/pkgconfig/libva-x11.pc
 /usr/lib64/pkgconfig/libva.pc
@@ -216,37 +208,30 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %files dev32
 %defattr(-,root,root,-)
 /usr/lib32/libva-drm.so
-/usr/lib32/libva-glx.so
 /usr/lib32/libva-wayland.so
 /usr/lib32/libva-x11.so
 /usr/lib32/libva.so
 /usr/lib32/pkgconfig/32libva-drm.pc
-/usr/lib32/pkgconfig/32libva-glx.pc
 /usr/lib32/pkgconfig/32libva-wayland.pc
 /usr/lib32/pkgconfig/32libva-x11.pc
 /usr/lib32/pkgconfig/32libva.pc
 /usr/lib32/pkgconfig/libva-drm.pc
-/usr/lib32/pkgconfig/libva-glx.pc
 /usr/lib32/pkgconfig/libva-wayland.pc
 /usr/lib32/pkgconfig/libva-x11.pc
 /usr/lib32/pkgconfig/libva.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-drm.so.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-drm.so.2.1800.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-glx.so.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-glx.so.2.1800.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-wayland.so.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-wayland.so.2.1800.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-x11.so.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva-x11.so.2.1800.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva.so.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libva.so.2.1800.0
+/V3/usr/lib64/libva-drm.so.2
+/V3/usr/lib64/libva-drm.so.2.1800.0
+/V3/usr/lib64/libva-wayland.so.2
+/V3/usr/lib64/libva-wayland.so.2.1800.0
+/V3/usr/lib64/libva-x11.so.2
+/V3/usr/lib64/libva-x11.so.2.1800.0
+/V3/usr/lib64/libva.so.2
+/V3/usr/lib64/libva.so.2.1800.0
 /usr/lib64/libva-drm.so.2
 /usr/lib64/libva-drm.so.2.1800.0
-/usr/lib64/libva-glx.so.2
-/usr/lib64/libva-glx.so.2.1800.0
 /usr/lib64/libva-wayland.so.2
 /usr/lib64/libva-wayland.so.2.1800.0
 /usr/lib64/libva-x11.so.2
@@ -258,8 +243,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %defattr(-,root,root,-)
 /usr/lib32/libva-drm.so.2
 /usr/lib32/libva-drm.so.2.1800.0
-/usr/lib32/libva-glx.so.2
-/usr/lib32/libva-glx.so.2.1800.0
 /usr/lib32/libva-wayland.so.2
 /usr/lib32/libva-wayland.so.2.1800.0
 /usr/lib32/libva-x11.so.2
