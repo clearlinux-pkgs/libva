@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : libva
-Version  : 2.18.0
-Release  : 67
-URL      : https://github.com/intel/libva/archive/2.18.0/libva-2.18.0.tar.gz
-Source0  : https://github.com/intel/libva/archive/2.18.0/libva-2.18.0.tar.gz
+Version  : 2.19.0
+Release  : 68
+URL      : https://github.com/intel/libva/archive/2.19.0/libva-2.19.0.tar.gz
+Source0  : https://github.com/intel/libva/archive/2.19.0/libva-2.19.0.tar.gz
 Summary  : Userspace Video Acceleration (VA) core interface
 Group    : Development/Tools
 License  : MIT
@@ -95,13 +95,13 @@ license components for the libva package.
 
 
 %prep
-%setup -q -n libva-2.18.0
-cd %{_builddir}/libva-2.18.0
+%setup -q -n libva-2.19.0
+cd %{_builddir}/libva-2.19.0
 pushd ..
-cp -a libva-2.18.0 build32
+cp -a libva-2.19.0 build32
 popd
 pushd ..
-cp -a libva-2.18.0 buildavx2
+cp -a libva-2.19.0 buildavx2
 popd
 
 %build
@@ -109,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685645731
+export SOURCE_DATE_EPOCH=1688569175
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -218,29 +218,29 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libva-drm.so.2.1800.0
-/V3/usr/lib64/libva-wayland.so.2.1800.0
-/V3/usr/lib64/libva-x11.so.2.1800.0
-/V3/usr/lib64/libva.so.2.1800.0
+/V3/usr/lib64/libva-drm.so.2.1900.0
+/V3/usr/lib64/libva-wayland.so.2.1900.0
+/V3/usr/lib64/libva-x11.so.2.1900.0
+/V3/usr/lib64/libva.so.2.1900.0
 /usr/lib64/libva-drm.so.2
-/usr/lib64/libva-drm.so.2.1800.0
+/usr/lib64/libva-drm.so.2.1900.0
 /usr/lib64/libva-wayland.so.2
-/usr/lib64/libva-wayland.so.2.1800.0
+/usr/lib64/libva-wayland.so.2.1900.0
 /usr/lib64/libva-x11.so.2
-/usr/lib64/libva-x11.so.2.1800.0
+/usr/lib64/libva-x11.so.2.1900.0
 /usr/lib64/libva.so.2
-/usr/lib64/libva.so.2.1800.0
+/usr/lib64/libva.so.2.1900.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libva-drm.so.2
-/usr/lib32/libva-drm.so.2.1800.0
+/usr/lib32/libva-drm.so.2.1900.0
 /usr/lib32/libva-wayland.so.2
-/usr/lib32/libva-wayland.so.2.1800.0
+/usr/lib32/libva-wayland.so.2.1900.0
 /usr/lib32/libva-x11.so.2
-/usr/lib32/libva-x11.so.2.1800.0
+/usr/lib32/libva-x11.so.2.1900.0
 /usr/lib32/libva.so.2
-/usr/lib32/libva.so.2.1800.0
+/usr/lib32/libva.so.2.1900.0
 
 %files license
 %defattr(0644,root,root,0755)
