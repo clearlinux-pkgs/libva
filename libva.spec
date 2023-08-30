@@ -5,7 +5,7 @@
 #
 Name     : libva
 Version  : 2.19.0
-Release  : 68
+Release  : 69
 URL      : https://github.com/intel/libva/archive/2.19.0/libva-2.19.0.tar.gz
 Source0  : https://github.com/intel/libva/archive/2.19.0/libva-2.19.0.tar.gz
 Summary  : Userspace Video Acceleration (VA) core interface
@@ -20,6 +20,8 @@ BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
+BuildRequires : mesa-dev
+BuildRequires : mesa-dev32
 BuildRequires : pkgconfig(32libdrm)
 BuildRequires : pkgconfig(32wayland-client)
 BuildRequires : pkgconfig(32wayland-scanner)
@@ -109,7 +111,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1688569175
+export SOURCE_DATE_EPOCH=1693411314
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -161,6 +163,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %defattr(-,root,root,-)
 /usr/include/va/va.h
 /usr/include/va/va_backend.h
+/usr/include/va/va_backend_glx.h
 /usr/include/va/va_backend_prot.h
 /usr/include/va/va_backend_vpp.h
 /usr/include/va/va_backend_wayland.h
@@ -185,6 +188,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/va/va_fei.h
 /usr/include/va/va_fei_h264.h
 /usr/include/va/va_fei_hevc.h
+/usr/include/va/va_glx.h
 /usr/include/va/va_prot.h
 /usr/include/va/va_str.h
 /usr/include/va/va_tpi.h
@@ -193,10 +197,12 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/va/va_wayland.h
 /usr/include/va/va_x11.h
 /usr/lib64/libva-drm.so
+/usr/lib64/libva-glx.so
 /usr/lib64/libva-wayland.so
 /usr/lib64/libva-x11.so
 /usr/lib64/libva.so
 /usr/lib64/pkgconfig/libva-drm.pc
+/usr/lib64/pkgconfig/libva-glx.pc
 /usr/lib64/pkgconfig/libva-wayland.pc
 /usr/lib64/pkgconfig/libva-x11.pc
 /usr/lib64/pkgconfig/libva.pc
@@ -204,14 +210,17 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %files dev32
 %defattr(-,root,root,-)
 /usr/lib32/libva-drm.so
+/usr/lib32/libva-glx.so
 /usr/lib32/libva-wayland.so
 /usr/lib32/libva-x11.so
 /usr/lib32/libva.so
 /usr/lib32/pkgconfig/32libva-drm.pc
+/usr/lib32/pkgconfig/32libva-glx.pc
 /usr/lib32/pkgconfig/32libva-wayland.pc
 /usr/lib32/pkgconfig/32libva-x11.pc
 /usr/lib32/pkgconfig/32libva.pc
 /usr/lib32/pkgconfig/libva-drm.pc
+/usr/lib32/pkgconfig/libva-glx.pc
 /usr/lib32/pkgconfig/libva-wayland.pc
 /usr/lib32/pkgconfig/libva-x11.pc
 /usr/lib32/pkgconfig/libva.pc
@@ -219,11 +228,14 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %files lib
 %defattr(-,root,root,-)
 /V3/usr/lib64/libva-drm.so.2.1900.0
+/V3/usr/lib64/libva-glx.so.2.1900.0
 /V3/usr/lib64/libva-wayland.so.2.1900.0
 /V3/usr/lib64/libva-x11.so.2.1900.0
 /V3/usr/lib64/libva.so.2.1900.0
 /usr/lib64/libva-drm.so.2
 /usr/lib64/libva-drm.so.2.1900.0
+/usr/lib64/libva-glx.so.2
+/usr/lib64/libva-glx.so.2.1900.0
 /usr/lib64/libva-wayland.so.2
 /usr/lib64/libva-wayland.so.2.1900.0
 /usr/lib64/libva-x11.so.2
@@ -235,6 +247,8 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %defattr(-,root,root,-)
 /usr/lib32/libva-drm.so.2
 /usr/lib32/libva-drm.so.2.1900.0
+/usr/lib32/libva-glx.so.2
+/usr/lib32/libva-glx.so.2.1900.0
 /usr/lib32/libva-wayland.so.2
 /usr/lib32/libva-wayland.so.2.1900.0
 /usr/lib32/libva-x11.so.2

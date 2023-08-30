@@ -1,4 +1,8 @@
 libva-drm.so.2:vaGetDisplayDRM
+libva-glx.so.2:vaCopySurfaceGLX
+libva-glx.so.2:vaCreateSurfaceGLX
+libva-glx.so.2:vaDestroySurfaceGLX
+libva-glx.so.2:vaGetDisplayGLX
 libva-wayland.so.2:vaGetDisplayWl
 libva-wayland.so.2:vaGetImageBufferWl
 libva-wayland.so.2:vaGetSurfaceBufferWl
