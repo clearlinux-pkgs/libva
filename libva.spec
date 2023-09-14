@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : libva
-Version  : 2.19.0
-Release  : 69
-URL      : https://github.com/intel/libva/archive/2.19.0/libva-2.19.0.tar.gz
-Source0  : https://github.com/intel/libva/archive/2.19.0/libva-2.19.0.tar.gz
+Version  : 2.20.0
+Release  : 70
+URL      : https://github.com/intel/libva/archive/2.20.0/libva-2.20.0.tar.gz
+Source0  : https://github.com/intel/libva/archive/2.20.0/libva-2.20.0.tar.gz
 Summary  : Userspace Video Acceleration (VA) core interface
 Group    : Development/Tools
 License  : MIT
@@ -20,26 +20,14 @@ BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
+BuildRequires : libX11-dev32
+BuildRequires : libdrm-dev32
 BuildRequires : mesa-dev
 BuildRequires : mesa-dev32
-BuildRequires : pkgconfig(32libdrm)
 BuildRequires : pkgconfig(32wayland-client)
 BuildRequires : pkgconfig(32wayland-scanner)
-BuildRequires : pkgconfig(32x11)
-BuildRequires : pkgconfig(32x11-xcb)
-BuildRequires : pkgconfig(32xcb)
-BuildRequires : pkgconfig(32xcb-dri3)
-BuildRequires : pkgconfig(32xext)
-BuildRequires : pkgconfig(32xfixes)
-BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(wayland-client)
 BuildRequires : pkgconfig(wayland-scanner)
-BuildRequires : pkgconfig(x11)
-BuildRequires : pkgconfig(x11-xcb)
-BuildRequires : pkgconfig(xcb)
-BuildRequires : pkgconfig(xcb-dri3)
-BuildRequires : pkgconfig(xext)
-BuildRequires : pkgconfig(xfixes)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -97,13 +85,13 @@ license components for the libva package.
 
 
 %prep
-%setup -q -n libva-2.19.0
-cd %{_builddir}/libva-2.19.0
+%setup -q -n libva-2.20.0
+cd %{_builddir}/libva-2.20.0
 pushd ..
-cp -a libva-2.19.0 build32
+cp -a libva-2.20.0 build32
 popd
 pushd ..
-cp -a libva-2.19.0 buildavx2
+cp -a libva-2.20.0 buildavx2
 popd
 
 %build
@@ -111,7 +99,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1693411314
+export SOURCE_DATE_EPOCH=1694724531
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -227,34 +215,34 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libva-drm.so.2.1900.0
-/V3/usr/lib64/libva-glx.so.2.1900.0
-/V3/usr/lib64/libva-wayland.so.2.1900.0
-/V3/usr/lib64/libva-x11.so.2.1900.0
-/V3/usr/lib64/libva.so.2.1900.0
+/V3/usr/lib64/libva-drm.so.2.2000.0
+/V3/usr/lib64/libva-glx.so.2.2000.0
+/V3/usr/lib64/libva-wayland.so.2.2000.0
+/V3/usr/lib64/libva-x11.so.2.2000.0
+/V3/usr/lib64/libva.so.2.2000.0
 /usr/lib64/libva-drm.so.2
-/usr/lib64/libva-drm.so.2.1900.0
+/usr/lib64/libva-drm.so.2.2000.0
 /usr/lib64/libva-glx.so.2
-/usr/lib64/libva-glx.so.2.1900.0
+/usr/lib64/libva-glx.so.2.2000.0
 /usr/lib64/libva-wayland.so.2
-/usr/lib64/libva-wayland.so.2.1900.0
+/usr/lib64/libva-wayland.so.2.2000.0
 /usr/lib64/libva-x11.so.2
-/usr/lib64/libva-x11.so.2.1900.0
+/usr/lib64/libva-x11.so.2.2000.0
 /usr/lib64/libva.so.2
-/usr/lib64/libva.so.2.1900.0
+/usr/lib64/libva.so.2.2000.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libva-drm.so.2
-/usr/lib32/libva-drm.so.2.1900.0
+/usr/lib32/libva-drm.so.2.2000.0
 /usr/lib32/libva-glx.so.2
-/usr/lib32/libva-glx.so.2.1900.0
+/usr/lib32/libva-glx.so.2.2000.0
 /usr/lib32/libva-wayland.so.2
-/usr/lib32/libva-wayland.so.2.1900.0
+/usr/lib32/libva-wayland.so.2.2000.0
 /usr/lib32/libva-x11.so.2
-/usr/lib32/libva-x11.so.2.1900.0
+/usr/lib32/libva-x11.so.2.2000.0
 /usr/lib32/libva.so.2
-/usr/lib32/libva.so.2.1900.0
+/usr/lib32/libva.so.2.2000.0
 
 %files license
 %defattr(0644,root,root,0755)
