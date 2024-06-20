@@ -43,7 +43,7 @@ libva.so.2:vaCreateImage
 libva.so.2:vaCreateMFContext
 libva.so.2:vaCreateProtectedSession
 libva.so.2:vaCreateSubpicture
-libva.so.2:vaCreateSurfaces
+libva.so.2:vaCreateSurfaces@@VA_API_0.33.0
 libva.so.2:vaDeassociateSubpicture
 libva.so.2:vaDeriveImage
 libva.so.2:vaDestroyBuffer
